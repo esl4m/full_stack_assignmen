@@ -41,11 +41,11 @@ I also added indexing and made some indexes INT unsigned (as it should be always
 I assume this script is going to be executed on a daily basis by cron or celery and it going to assess budgets for the current month only.
 That is why we are not selecting offline shops, shops with 0 budget and quotas from the past months. (see `SELECT.sql`)
 
-##* Does your solution avoid sending duplicate notifications?
+### Does your solution avoid sending duplicate notifications?
 In order to prevent notification duplications I created a third table `sent_notifications`.
 It is going to be cleared every 31 day.
 
-##* How does your solution handle a budget change after a notification has already been sent?
+### How does your solution handle a budget change after a notification has already been sent?
 The procedure of budget update should be tied to to the initialisation and update of the sent_notifications table. (see `migrations.sql`)
 and `SELECT.sql` algorithm:
 etc.
