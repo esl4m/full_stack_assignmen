@@ -6,9 +6,7 @@ Just copy, paste and run:
 ```
 cd /tmp;
 git clone git@github.com:wansiedler/full_stack_assignmen.git;
-cd ./full_stack_assignmen/docker;
-docker-compose up --build --detach 
-sleep 10 # wait till mysql becomes sane 
+cd ./full_stack_assignmen/docker; 
 docker-compose run python_project
 ```
 
