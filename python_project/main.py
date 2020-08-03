@@ -3,7 +3,6 @@ from datetime import datetime
 import mysql.connector as db
 
 my_db = db.connect(
-    # host="localhost",
     host="db",
     user="db",
     passwd="db"
@@ -129,7 +128,7 @@ def check_budgets_of_all_shops():
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     if not shops:
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
-        print("+All notifications are sent. Is Dobby a free elf now?+")
+        print("+All notifications are sent. Exit?+")
         print("++++++++++++++++++++++++++++++++++++++++++++++++++++++")
     run()
 
