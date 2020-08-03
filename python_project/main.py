@@ -3,8 +3,8 @@ from datetime import datetime
 import mysql.connector as db
 
 my_db = db.connect(
-    # host="localhost",
-    host="db",
+    host="localhost",
+    # host="db",
     user="db",
     passwd="db"
 )
@@ -112,7 +112,6 @@ def check_budgets_of_all_shops():
         print(shop)
         shop_id = shop['a_id']
         shop_name = shop['a_name']
-        is_online = shop['a_online']
         month_of_budget = shop['a_month']
         monthly_budget = float(shop['a_budget_amount'])
         monthly_expenditure = shop['a_amount_spent']

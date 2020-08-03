@@ -38,8 +38,7 @@ VALUES (9, 'Another Shop', 1),
 
 INSERT INTO t_budgets
     (a_shop_id, a_month, a_budget_amount, a_amount_spent)
-VALUES
-       (2, '2020-08-01', 670.00, 715.64),
+VALUES (2, '2020-08-01', 670.00, 715.64),
        (3, '2020-08-01', 890.00, 580.81),
        (4, '2020-08-01', 590.00, 754.93),
        (5, '2020-08-01', 870.00, 505.12),
@@ -61,11 +60,11 @@ WHERE shops.a_online = 1
   AND YEAR(budgets.a_month) = YEAR(NOW())
   AND MONTH(budgets.a_month) = MONTH(NOW())
   AND NOT EXISTS(
-        SELECT a_id
+        SELECT t_shops.a_id
         FROM t_shops,
              t_budgets,
              sent_notifications
-        WHERE sent_notifications.a_shop_id = t_shops.a_id
+        WHERE t_shops.a_id = sent_notifications.a_shop_id
           AND t_shops.a_id = t_budgets.a_shop_id
           AND YEAR(t_budgets.a_month) = YEAR(NOW())
           AND MONTH(t_budgets.a_month) = MONTH(NOW())
