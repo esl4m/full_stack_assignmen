@@ -3,8 +3,8 @@ from datetime import datetime
 import mysql.connector as db
 
 my_db = db.connect(
-    host="localhost",
-    # host="db",
+    # host="localhost",
+    host="db",
     user="db",
     passwd="db"
 )
