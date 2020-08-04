@@ -2,6 +2,11 @@
 from datetime import datetime
 import mysql.connector as db
 
+my_db = db.connect(
+    host="db",
+    user="db",
+    passwd="db"
+)
 
 def initialize_db() -> None:
     """
@@ -154,13 +159,6 @@ def run() -> None:
 
 if __name__ == '__main__':
     prepare_db()
-
-    my_db = db.connect(
-        host="db",
-        user="db",
-        passwd="db"
-    )
-
     my_cursor = my_db.cursor()
     run()
     my_cursor.close()
