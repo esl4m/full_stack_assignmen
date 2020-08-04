@@ -54,7 +54,7 @@ def prepare_db() -> None:
     add_migrations()
 
 
-def get_online_shops_with_budgets() -> Dictionary:
+def get_online_shops_with_budgets():
     """
     get all budgets for every shop
     """
