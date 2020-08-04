@@ -21,5 +21,7 @@ WHERE shops.a_online = 1                               # online only
   AND YEAR(sent_notifications.a_month) = YEAR(NOW())   # current notification month
   AND MONTH(sent_notifications.a_month) = MONTH(NOW()) # current notification year
 
-  AND (floor(round((budgets.a_amount_spent / budgets.a_budget_amount) * 100) / 50) - sent_notifications.threshold) > 0 # threshold we are using to select the right shops
+  AND (floor(round((budgets.a_amount_spent / budgets.a_budget_amount) * 100) / 50) - sent_notifications.threshold) > 0
+  # threshold we are using to select the right shops
+  # and to send the right notifications
 ;

@@ -2,14 +2,6 @@
 from datetime import datetime
 import mysql.connector as db
 
-my_db = db.connect(
-    host="db",
-    user="db",
-    passwd="db"
-)
-
-my_cursor = my_db.cursor()
-
 
 def initialize_db() -> None:
     """
@@ -106,8 +98,8 @@ def check_budgets_of_all_shops() -> None:
     Notifying shops when their monthly expenditure reaches certain threshold.
     Once they reach 100% of the current month's budget, the shops should be notified again and set to _offline_.
     """
-
-    for shop in get_online_shops_with_budgets():
+    shops = get_online_shops_with_budgets()
+    for shop in shops:
         print(shop)
         shop_id = shop['a_id']
         shop_name = shop['a_name']
@@ -118,11 +110,13 @@ def check_budgets_of_all_shops() -> None:
 
         # We want to notify shops when they reach 50% of the current month's budget.
         if percentage > 50:
-            notify_shop(threshold=50, shop_id=shop_id, shop_name=shop_name, month_of_budget=month_of_budget, monthly_budget=monthly_budget, monthly_expenditure=monthly_expenditure, percentage=percentage)
+            notify_shop(threshold=50, shop_id=shop_id, shop_name=shop_name, month_of_budget=month_of_budget, monthly_budget=monthly_budget, monthly_expenditure=monthly_expenditure,
+                        percentage=percentage)
             print("--------------------------------------------------------------------------------------------------------------------------------")
         # Once they reach 100% of the current month's budget, the shops should be notified again and set to _offline_.
         if percentage > 100:
-            notify_shop(threshold=100, shop_id=shop_id, shop_name=shop_name, month_of_budget=month_of_budget, monthly_budget=monthly_budget, monthly_expenditure=monthly_expenditure, percentage=percentage)
+            notify_shop(threshold=100, shop_id=shop_id, shop_name=shop_name, month_of_budget=month_of_budget, monthly_budget=monthly_budget, monthly_expenditure=monthly_expenditure,
+                        percentage=percentage)
             # Shops that need to go _offline_ according to the rules in the previous section should be marked as such in the database.
             set_offline(shop_id=shop_id)
             print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -160,5 +154,13 @@ def run() -> None:
 
 if __name__ == '__main__':
     prepare_db()
+
+    my_db = db.connect(
+        host="db",
+        user="db",
+        passwd="db"
+    )
+
+    my_cursor = my_db.cursor()
     run()
     my_cursor.close()
