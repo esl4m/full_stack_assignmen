@@ -11,7 +11,7 @@ my_db = db.connect(
 my_cursor = my_db.cursor()
 
 
-def initialize_db():
+def initialize_db() -> None:
     """
     initialising DB
     """
@@ -21,7 +21,7 @@ def initialize_db():
     print('DB intitialized')
 
 
-def structure_and_repopulate_db():
+def structure_and_repopulate_db() -> None:
     """
     structure and data import
     """
@@ -34,7 +34,7 @@ def structure_and_repopulate_db():
     print('Source structure created, data repopulated')
 
 
-def add_migrations():
+def add_migrations() -> None:
     """
     migration
     """
@@ -47,14 +47,14 @@ def add_migrations():
     print('Data migrated')
 
 
-def prepare_db():
+def prepare_db() -> None:
     print("==================================================================================================================")
     initialize_db()
     structure_and_repopulate_db()
     add_migrations()
 
 
-def get_online_shops_with_budgets():
+def get_online_shops_with_budgets() -> Dictionary:
     """
     get all budgets for every shop
     """
@@ -70,7 +70,7 @@ def get_online_shops_with_budgets():
     return shops
 
 
-def notify_shop(threshold, shop_id, shop_name, month_of_budget, monthly_budget, monthly_expenditure, percentage):
+def notify_shop(threshold: int, shop_id: int, shop_name: str, month_of_budget: datetime, monthly_budget: int, monthly_expenditure: int, percentage: int) -> None:
     """
     notify the shop
 
@@ -90,7 +90,7 @@ def notify_shop(threshold, shop_id, shop_name, month_of_budget, monthly_budget, 
     my_db.commit()
 
 
-def set_offline(shop_id):
+def set_offline(shop_id: int) -> None:
     """
     set the shop offline
     """
@@ -99,15 +99,15 @@ def set_offline(shop_id):
     my_db.commit()
 
 
-def check_budgets_of_all_shops():
+def check_budgets_of_all_shops() -> None:
     """
     main check functions
 
     Notifying shops when their monthly expenditure reaches certain threshold.
     Once they reach 100% of the current month's budget, the shops should be notified again and set to _offline_.
     """
-    shops = get_online_shops_with_budgets()
-    for shop in shops:
+
+    for shop in get_online_shops_with_budgets():
         print(shop)
         shop_id = shop['a_id']
         shop_name = shop['a_name']
@@ -133,7 +133,7 @@ def check_budgets_of_all_shops():
     run()
 
 
-def display_main_menu():
+def display_main_menu() -> None:
     """
     display main menu
     """
@@ -143,7 +143,7 @@ def display_main_menu():
     print('  2. Exit')
 
 
-def run():
+def run() -> None:
     """
     main function
     """

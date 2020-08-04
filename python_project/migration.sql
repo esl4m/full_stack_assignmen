@@ -1,4 +1,4 @@
-CREATE TABLE sent_notifications
+CREATE TABLE t_sent_notifications
 (
     a_shop_id  INT(11)   NOT NULL REFERENCES t_budgets (a_shop_id),
     a_month    DATE      NOT NULL,
